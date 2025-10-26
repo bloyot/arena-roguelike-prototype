@@ -1,0 +1,56 @@
+[gd_resource type="SpriteFrames" load_steps=10 format=3 uid="uid://tfxm0g443rlu"]
+
+[ext_resource type="Texture2D" uid="uid://dnqcpi0ackpqn" path="res://assets/character/wizard/hit/wizzard_m_hit_anim_f0.png" id="1_j6klt"]
+[ext_resource type="Texture2D" uid="uid://k55qjypmdr1v" path="res://assets/character/wizard/idle/wizzard_m_idle_anim_f0.png" id="2_1iwl0"]
+[ext_resource type="Texture2D" uid="uid://3pts1mx3xh17" path="res://assets/character/wizard/idle/wizzard_m_idle_anim_f1.png" id="3_5eofy"]
+[ext_resource type="Texture2D" uid="uid://c0jil3wry1tv0" path="res://assets/character/wizard/idle/wizzard_m_idle_anim_f2.png" id="4_yr41c"]
+[ext_resource type="Texture2D" uid="uid://bfh2x6apwopj0" path="res://assets/character/wizard/idle/wizzard_m_idle_anim_f3.png" id="5_ow71q"]
+[ext_resource type="Texture2D" uid="uid://c2u0vsqwbi53s" path="res://assets/character/wizard/run/wizzard_m_run_anim_f0.png" id="6_y31q3"]
+[ext_resource type="Texture2D" uid="uid://dwswq2pckhmdx" path="res://assets/character/wizard/run/wizzard_m_run_anim_f1.png" id="7_b7geh"]
+[ext_resource type="Texture2D" uid="uid://b3pw11w6cgibv" path="res://assets/character/wizard/run/wizzard_m_run_anim_f2.png" id="8_61e66"]
+[ext_resource type="Texture2D" uid="uid://dvgkrj4s2rit" path="res://assets/character/wizard/run/wizzard_m_run_anim_f3.png" id="9_jb3o8"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_j6klt")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_1iwl0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5eofy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_yr41c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ow71q")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_y31q3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_b7geh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_61e66")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_jb3o8")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
