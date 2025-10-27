@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwpqpl4kvrcqx"]
+
+[ext_resource type="SpriteFrames" uid="uid://cwov2jq8fvdwp" path="res://assets/fx/slash_fx.tres" id="1_a5oex"]
+
+[node name="SlashFx" type="AnimatedSprite2D"]
+sprite_frames = ExtResource("1_a5oex")
+animation = &"slash"
+frame = 2
+frame_progress = 1.0

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://vh57x8en1fcj"]
 
-[ext_resource type="SpriteFrames" uid="uid://dvlv5fitw46c" path="res://assets/enemies/imp/imp_sprite.tres" id="1_arkg0"]
+[ext_resource type="SpriteFrames" uid="uid://dvlv5fitw46c" path="res://assets/enemy/imp/imp_sprite.tres" id="1_arkg0"]
 
 [node name="ImpSprite" type="Node2D"]
 

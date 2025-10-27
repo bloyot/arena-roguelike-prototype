@@ -1,0 +1,32 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://cwov2jq8fvdwp"]
+
+[ext_resource type="Texture2D" uid="uid://b67erithxoe1k" path="res://assets/fx/Blue Effect Bullet Impact Explosion 32x32_slash.png" id="1_qq5cm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sf1y6"]
+atlas = ExtResource("1_qq5cm")
+region = Rect2(64, 128, 32, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e4svg"]
+atlas = ExtResource("1_qq5cm")
+region = Rect2(96, 128, 32, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26p2k"]
+atlas = ExtResource("1_qq5cm")
+region = Rect2(128, 128, 32, 96)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sf1y6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e4svg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26p2k")
+}],
+"loop": false,
+"name": &"slash",
+"speed": 15.0
+}]

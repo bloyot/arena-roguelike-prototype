@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbnvpfqvuiyeo"]
+
+[ext_resource type="PackedScene" uid="uid://cwpqpl4kvrcqx" path="res://scenes/fx/slash_fx.tscn" id="1_fjx8b"]
+[ext_resource type="Script" uid="uid://cx415nkm77ljg" path="res://scripts/ability/slash_ability.gd" id="1_pmseg"]
+
+[node name="SlashAbility" type="Node2D" groups=["ability"]]
+script = ExtResource("1_pmseg")
+
+[node name="SlashFx" parent="." groups=["ability"] instance=ExtResource("1_fjx8b")]

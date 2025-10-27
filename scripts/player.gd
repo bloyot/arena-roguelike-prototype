@@ -13,6 +13,7 @@ static var INTANGIBLE_COLLISION_MASK: int = 0b0001
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hitbox: Area2D = $Hitbox
 @onready var camera: Camera2D = $Camera
+@onready var slash_ability: Ability = $AbilitySystem/SlashAbility
 
 # Exports
 @export var move_speed: float
@@ -47,6 +48,8 @@ func _physics_process(delta: float) -> void:
 	# move the player
 	move(delta)
 
+	handle_abilities()
+
 func move(_delta: float) -> void:
 
 	velocity = Vector2(0, 0)
@@ -60,6 +63,11 @@ func move(_delta: float) -> void:
 		velocity += Vector2(0, move_speed)
 
 	move_and_slide()
+
+func handle_abilities() -> void:
+	# TODO integrate this with the ability system
+	if InputManager.get_input()["ability_1"]:
+		slash_ability.try_activate_ability()
 
 func init_states() -> void:
 	# setup the states
