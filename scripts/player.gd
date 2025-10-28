@@ -1,5 +1,4 @@
-extends CharacterBody2D
-class_name Player
+class_name Player extends CharacterBody2D
 
 enum FACING { LEFT, RIGHT }
 
@@ -13,8 +12,7 @@ static var INTANGIBLE_COLLISION_MASK: int = 0b0001
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hitbox: Area2D = $Hitbox
 @onready var camera: Camera2D = $Camera
-@onready var slash_ability: Ability = $AbilitySystem/SlashAbility
-
+@onready var ability_system: AbilitySystem = %AbilitySystem
 # Exports
 @export var move_speed: float
 
@@ -36,6 +34,8 @@ var freeze_facing: bool = false
 ########################################
 func _ready() -> void:
 	init_states()
+	# TODO move this to the ability system
+	init_abilities()
 
 func _physics_process(delta: float) -> void:
 	var maybe_new_state: BaseCharacterState.STATE = curr_state.update(delta)
@@ -67,7 +67,7 @@ func move(_delta: float) -> void:
 func handle_abilities() -> void:
 	# TODO integrate this with the ability system
 	if InputManager.get_input()["ability_1"]:
-		slash_ability.try_activate_ability()
+		ability_system.use_ability("slash", camera.get_global_mouse_position())
 
 func init_states() -> void:
 	# setup the states
@@ -77,6 +77,9 @@ func init_states() -> void:
 		states[state.get_state()] = state
 	curr_state = states[BaseCharacterState.STATE.IDLE]
 	change_state(BaseCharacterState.STATE.IDLE)
+
+func init_abilities() -> void:
+	ability_system.player = self
 
 func change_state(target_state: BaseCharacterState.STATE) -> void:
 	assert(states.has(target_state), "STATE " + str(target_state) + " not present on character")

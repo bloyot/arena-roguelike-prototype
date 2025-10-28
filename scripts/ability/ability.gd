@@ -5,6 +5,8 @@ extends Node2D
 signal ability_activated(ability_name: String)
 signal ability_ended(ability_name: String)
 
+var player: Player
+
 # check activation conditions and costs
 @abstract
 func can_activate_ability() -> bool

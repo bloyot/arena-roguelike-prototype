@@ -1,9 +1,26 @@
-[gd_scene load_steps=3 format=3 uid="uid://cbnvpfqvuiyeo"]
+[gd_scene load_steps=4 format=3 uid="uid://cbnvpfqvuiyeo"]
 
 [ext_resource type="PackedScene" uid="uid://cwpqpl4kvrcqx" path="res://scenes/fx/slash_fx.tscn" id="1_fjx8b"]
 [ext_resource type="Script" uid="uid://cx415nkm77ljg" path="res://scripts/ability/slash_ability.gd" id="1_pmseg"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pmseg"]
+size = Vector2(27, 74)
+
 [node name="SlashAbility" type="Node2D" groups=["ability"]]
+scale = Vector2(0.7, 0.7)
 script = ExtResource("1_pmseg")
 
 [node name="SlashFx" parent="." groups=["ability"] instance=ExtResource("1_fjx8b")]
+position = Vector2(148.57143, -8.571428)
+frame = 1
+frame_progress = 0.0
+offset = Vector2(-154.57143, 1.5714288)
+
+[node name="Hitbox" type="Area2D" parent="SlashFx"]
+unique_name_in_owner = true
+position = Vector2(-155.7143, 1.4285707)
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SlashFx/Hitbox"]
+position = Vector2(3.5, 11)
+shape = SubResource("RectangleShape2D_pmseg")
