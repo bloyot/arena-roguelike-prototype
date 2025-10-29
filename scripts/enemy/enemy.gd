@@ -22,8 +22,9 @@ func die() -> void:
 	queue_free()
 
 func hit_flash() -> void:
-	sprite.material.set("shader_parameter/Active", true)
+	sprite.material.set("shader_parameter/active", true)
 	var timer: Timer = Timer.new()
+	add_child(timer)
 	timer.one_shot = true
-	timer.wait_time = 0.3
-	timer.timeout.connect(func(): sprite.material.set("shader_parameter/Active", false))
+	timer.timeout.connect(func(): sprite.material.set("shader_parameter/active", false))
+	timer.start(0.1)

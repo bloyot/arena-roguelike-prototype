@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://vh57x8en1fcj"]
+[gd_scene load_steps=5 format=3 uid="uid://vh57x8en1fcj"]
 
 [ext_resource type="Material" uid="uid://ch5t2j6yu7064" path="res://assets/hit_flash.tres" id="1_25qt8"]
 [ext_resource type="SpriteFrames" uid="uid://dvlv5fitw46c" path="res://assets/enemy/imp/imp_sprite.tres" id="1_arkg0"]
+[ext_resource type="Script" uid="uid://c4u4j54nav30j" path="res://scripts/enemy/imp.gd" id="1_ryekx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_25qt8"]
 size = Vector2(9, 11)
 
 [node name="Imp" type="CharacterBody2D"]
+script = ExtResource("1_ryekx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 2.5)
