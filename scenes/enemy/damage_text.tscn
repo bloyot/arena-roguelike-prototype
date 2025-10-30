@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://csp0eij20udo5"]
+
+[ext_resource type="Script" uid="uid://duuo35nqcyhsv" path="res://scripts/enemy/damage_text.gd" id="1_dpbxb"]
+
+[node name="DamageText" type="RichTextLabel"]
+offset_right = 112.0
+offset_bottom = 26.0
+bbcode_enabled = true
+text = "5"
+script = ExtResource("1_dpbxb")
+float_distance = 5.0
+float_duration = 0.3
+total_duration = 0.75
+miss_color = Color(1, 1, 1, 1)
+damage_color = Color(0.94270927, 2.815649e-06, 5.7756904e-07, 1)

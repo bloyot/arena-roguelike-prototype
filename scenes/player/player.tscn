@@ -2,7 +2,7 @@
 
 [ext_resource type="SpriteFrames" uid="uid://tfxm0g443rlu" path="res://assets/character/wizard/wizard_sprites.tres" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://d15au6qjch55y" path="res://scripts/player.gd" id="1_dovo2"]
-[ext_resource type="PackedScene" uid="uid://cbnvpfqvuiyeo" path="res://scenes/ability/SlashAbility.tscn" id="3_gmlin"]
+[ext_resource type="PackedScene" uid="uid://d3ja0lm6yame3" path="res://ability/SlashAbility.tscn" id="3_gmlin"]
 [ext_resource type="Script" uid="uid://b7fbvjtv7pwhe" path="res://scripts/ability/ability_system.gd" id="3_lvxji"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dovo2"]
@@ -10,6 +10,8 @@ radius = 6.0
 height = 20.0
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_dovo2")
 move_speed = 100.0
 
@@ -19,6 +21,8 @@ shape = SubResource("CapsuleShape2D_dovo2")
 
 [node name="Hitbox" type="Area2D" parent="."]
 position = Vector2(-2, -7)
+collision_layer = 2
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(1, 5)
