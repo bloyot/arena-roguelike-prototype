@@ -28,6 +28,7 @@ var curr_state: BaseCharacterState = null
 var freeze_facing: bool = false
 
 ## player specific stuff goes here ##
+var health = 50
 
 ########################################
 ########## Engine Overrides ############
@@ -107,3 +108,9 @@ func set_intangible(is_intangible: bool) -> void:
 
 func determine_facing() -> Player.FACING:
 	return Player.FACING.RIGHT if camera.get_global_mouse_position().x > position.x else Player.FACING.LEFT
+
+func take_damage(damage: int) -> void:
+	print("taking " + str(damage) + " damage")
+	health -= damage
+	if health <= 0:
+		get_tree().quit()
