@@ -1,0 +1,13 @@
+[gd_resource type="BehaviorTree" load_steps=4 format=3 uid="uid://umlv6cr8ocu5"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_ou1k1"]
+
+[sub_resource type="BBNode" id="BBNode_ou1k1"]
+saved_value = null
+
+[sub_resource type="BTEvaluateExpression" id="BTEvaluateExpression_ex6s1"]
+node = SubResource("BBNode_ou1k1")
+
+[resource]
+blackboard_plan = SubResource("BlackboardPlan_ou1k1")
+root_task = SubResource("BTEvaluateExpression_ex6s1")
