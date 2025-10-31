@@ -18,7 +18,11 @@ func input() -> Dictionary:
 		"move_right": Input.is_action_pressed("move_right"),
 		"move_up": Input.is_action_pressed("move_up"),
 		"move_down": Input.is_action_pressed("move_down"),
-		"ability_1": Input.is_action_just_pressed("ability_1")
+		"ability_1": Input.is_action_just_pressed("ability_1"),
+		"ability_2": Input.is_action_just_pressed("ability_2"),
+		"ability_3": Input.is_action_just_pressed("ability_3"),
+		"ability_4": Input.is_action_just_pressed("ability_4"),
+		"quit": Input.is_action_just_pressed("quit")
 	}
 
 # get the input map at the specified frame

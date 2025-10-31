@@ -35,21 +35,18 @@ var health = 50
 ########################################
 func _ready() -> void:
 	init_states()
-	# TODO move this to the ability system
-	init_abilities()
 
 func _physics_process(delta: float) -> void:
 	var maybe_new_state: BaseCharacterState.STATE = curr_state.update(delta)
 	if (maybe_new_state != BaseCharacterState.STATE.NONE):
 		change_state(maybe_new_state)
 
-	# determine facing
 	set_facing(determine_facing())
-
-	# move the player
+	handle_abilities()
 	move(delta)
 
-	handle_abilities()
+	if (InputManager.get_input()["quit"]):
+		get_tree().quit()
 
 func move(_delta: float) -> void:
 
@@ -66,9 +63,15 @@ func move(_delta: float) -> void:
 	move_and_slide()
 
 func handle_abilities() -> void:
-	# TODO integrate this with the ability system
 	if InputManager.get_input()["ability_1"]:
-		ability_system.use_ability("slash", camera.get_global_mouse_position())
+		ability_system.use_ability(0, camera.get_global_mouse_position())
+	if InputManager.get_input()["ability_2"]:
+		ability_system.use_ability(1, camera.get_global_mouse_position())
+	if InputManager.get_input()["ability_3"]:
+		ability_system.use_ability(2, camera.get_global_mouse_position())
+	if InputManager.get_input()["ability_4"]:
+		ability_system.use_ability(3, camera.get_global_mouse_position())
+
 
 func init_states() -> void:
 	# setup the states
@@ -78,9 +81,6 @@ func init_states() -> void:
 		states[state.get_state()] = state
 	curr_state = states[BaseCharacterState.STATE.IDLE]
 	change_state(BaseCharacterState.STATE.IDLE)
-
-func init_abilities() -> void:
-	ability_system.player = self
 
 func change_state(target_state: BaseCharacterState.STATE) -> void:
 	assert(states.has(target_state), "STATE " + str(target_state) + " not present on character")
