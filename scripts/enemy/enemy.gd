@@ -7,6 +7,11 @@ signal enemy_killed(enemy_id)
 # TODO make this dynamically configured, probably loadable from a top level combat
 # manager autoload or something
 @export var player: Player
+# all enemies should deal damage to the player when coming into contact, this returns the amount of damage to deal
+@export var contact_damage: int
+@export var contact_tick_rate_s: float
+@export var move_speed: float
+@export var aggro_range: float
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hitbox: Area2D = $Hitbox
@@ -19,16 +24,6 @@ var enemy_id: int
 var health: float = 10
 var aggrod: bool = false
 
-# all enemies should deal damage to the player when coming into contact, this returns the amount of damage to deal
-@abstract
-func get_contact_damage() -> int
-
-@abstract
-func get_contact_tick_rate_s() -> float
-
-@abstract
-func get_move_speed() -> float
-
 func _ready() -> void:
 	sprite.frame = randi_range(0, sprite.sprite_frames.get_frame_count("idle") - 1)
 	hitbox.area_entered.connect(on_area_entered)
@@ -38,15 +33,15 @@ func _ready() -> void:
 	add_child(damage_tick_timer)
 	damage_tick_timer.timeout.connect(on_damage_tick)
 
-	# TODO make this based on a configurable range i.e. abstract get_aggro_range()
-	aggrod = true
-	# TODO set this only on aggro
-	navigation_agent.target_position = player.global_position
-
 func _physics_process(_delta: float) -> void:
+
+	if !aggrod and player.global_position.distance_to(global_position) < aggro_range:
+		aggrod = true
+
 	if aggrod:
+		navigation_agent.target_position = player.global_position
 		var next_position: Vector2 = navigation_agent.get_next_path_position()
-		velocity = (next_position - global_position).normalized() * get_move_speed()
+		velocity = (next_position - global_position).normalized() * move_speed
 
 	move_and_slide()
 
@@ -79,11 +74,11 @@ func hit_flash() -> void:
 
 func on_area_entered(area: Area2D) -> void:
 	if area.get_parent() is Player:
-		damage_tick_timer.start(get_contact_tick_rate_s())
+		damage_tick_timer.start(contact_tick_rate_s)
 
 func on_area_exited(area: Area2D) -> void:
 	if area.get_parent() is Player:
 		damage_tick_timer.stop()
 
 func on_damage_tick() -> void:
-	player.take_damage(get_contact_damage())
+	player.take_damage(contact_damage)

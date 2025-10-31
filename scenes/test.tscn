@@ -29,13 +29,13 @@ position = Vector2(168, 156)
 [node name="Enemies" type="Node2D" parent="Objects"]
 
 [node name="ImpSprite" parent="Objects/Enemies" node_paths=PackedStringArray("player") instance=ExtResource("3_iyx0m")]
-position = Vector2(128, 81)
+position = Vector2(280, 72)
 player = NodePath("../../Player")
 
 [node name="ImpSprite2" parent="Objects/Enemies" node_paths=PackedStringArray("player") instance=ExtResource("3_iyx0m")]
-position = Vector2(100, 113)
+position = Vector2(296, 80)
 player = NodePath("../../Player")
 
 [node name="ImpSprite3" parent="Objects/Enemies" node_paths=PackedStringArray("player") instance=ExtResource("3_iyx0m")]
-position = Vector2(96, 197)
+position = Vector2(280, 96)
 player = NodePath("../../Player")

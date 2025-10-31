@@ -4,9 +4,9 @@
 [ext_resource type="SpriteFrames" uid="uid://dvlv5fitw46c" path="res://assets/enemy/imp/imp_sprite.tres" id="1_arkg0"]
 [ext_resource type="Script" uid="uid://c4u4j54nav30j" path="res://scripts/enemy/imp.gd" id="1_ryekx"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_25qt8"]
-resource_local_to_scene = true
-size = Vector2(9, 11)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ryekx"]
+radius = 5.5
+height = 13.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ryekx"]
 resource_local_to_scene = true
@@ -17,11 +17,13 @@ collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_ryekx")
 contact_damage = 3
-move_speed = 10
+contact_tick_rate_s = 0.2
+move_speed = 30.0
+aggro_range = 100.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 2.5)
-shape = SubResource("RectangleShape2D_25qt8")
+shape = SubResource("CapsuleShape2D_ryekx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = ExtResource("1_25qt8")
@@ -39,4 +41,3 @@ position = Vector2(0.5, 2.5)
 shape = SubResource("RectangleShape2D_ryekx")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-debug_enabled = true
