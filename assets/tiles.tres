@@ -1,8 +1,8 @@
 [gd_resource type="TileSet" load_steps=9 format=3 uid="uid://bk5s8shuuu403"]
 
-[ext_resource type="Texture2D" uid="uid://b4vjy2qav4j4s" path="res://assets/environment/atlas_floor-16x16.png" id="1_x1i2l"]
-[ext_resource type="Texture2D" uid="uid://c76m74ajedl71" path="res://assets/environment/atlas_walls_low-16x16.png" id="2_pnaot"]
-[ext_resource type="Texture2D" uid="uid://ik1mnch7jads" path="res://assets/environment/atlas_walls_high-16x32.png" id="3_u6fay"]
+[ext_resource type="Texture2D" uid="uid://53psxfvdcnwk" path="res://assets/environment/atlas_floor-16x16.png" id="1_x1i2l"]
+[ext_resource type="Texture2D" uid="uid://dm21jy851yhoh" path="res://assets/environment/atlas_walls_low-16x16.png" id="2_pnaot"]
+[ext_resource type="Texture2D" uid="uid://cyaecwh8xex4n" path="res://assets/environment/atlas_walls_high-16x32.png" id="3_u6fay"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_x1i2l"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)

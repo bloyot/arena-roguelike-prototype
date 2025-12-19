@@ -2,7 +2,7 @@
 
 [ext_resource type="Material" uid="uid://ch5t2j6yu7064" path="res://assets/hit_flash.tres" id="1_25qt8"]
 [ext_resource type="SpriteFrames" uid="uid://dvlv5fitw46c" path="res://assets/enemy/imp/imp_sprite.tres" id="1_arkg0"]
-[ext_resource type="Script" uid="uid://c4u4j54nav30j" path="res://scripts/enemy/imp.gd" id="1_ryekx"]
+[ext_resource type="Script" uid="uid://bi0jjjg8pko20" path="res://scripts/enemy/imp.gd" id="1_ryekx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ryekx"]
 radius = 5.5
@@ -20,6 +20,8 @@ contact_damage = 3
 contact_tick_rate_s = 0.2
 move_speed = 30.0
 aggro_range = 100.0
+hit_stun_time = 0.3
+hit_flash_time = 0.1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 2.5)

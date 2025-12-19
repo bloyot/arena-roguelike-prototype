@@ -12,6 +12,9 @@ signal enemy_killed(enemy_id)
 @export var contact_tick_rate_s: float
 @export var move_speed: float
 @export var aggro_range: float
+# TODO pull this from the ability, or maybe conditional on magnitude of damage taken
+@export var hit_stun_time: float 
+@export var hit_flash_time: float 
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hitbox: Area2D = $Hitbox
@@ -19,10 +22,13 @@ signal enemy_killed(enemy_id)
 
 var damage_text_scene = preload("res://scenes/enemy/damage_text.tscn")
 var damage_tick_timer: Timer
+var hit_stun_timer: Timer
+var hit_flash_timer: Timer
 
 var enemy_id: int
 var health: float = 10
 var aggrod: bool = false
+var is_hit_stun: bool = false
 
 func _ready() -> void:
 	sprite.frame = randi_range(0, sprite.sprite_frames.get_frame_count("idle") - 1)
@@ -32,6 +38,16 @@ func _ready() -> void:
 	damage_tick_timer = Timer.new()
 	add_child(damage_tick_timer)
 	damage_tick_timer.timeout.connect(on_damage_tick)
+	
+	hit_stun_timer = Timer.new()
+	hit_stun_timer.one_shot = true
+	hit_stun_timer.timeout.connect(on_hit_stun_finished)
+	add_child(hit_stun_timer)
+	
+	hit_flash_timer = Timer.new()
+	hit_flash_timer.one_shot = true
+	hit_flash_timer.timeout.connect(on_hit_flash_finished)
+	add_child(hit_flash_timer)
 
 func _physics_process(_delta: float) -> void:
 
@@ -43,13 +59,15 @@ func _physics_process(_delta: float) -> void:
 		var next_position: Vector2 = navigation_agent.get_next_path_position()
 		velocity = (next_position - global_position).normalized() * move_speed
 
-	move_and_slide()
+	if !is_hit_stun:
+		move_and_slide()	
 
 func take_damage(damage: int) -> void:
 	health -= damage
 	damage_taken.emit(enemy_id, damage)
 	hit_flash()
 	spawn_damage_text(damage)
+	hit_stun()
 	if health <= 0:
 		die()
 
@@ -66,11 +84,11 @@ func spawn_damage_text(damage: int) -> void:
 
 func hit_flash() -> void:
 	sprite.material.set("shader_parameter/active", true)
-	var timer: Timer = Timer.new()
-	add_child(timer)
-	timer.one_shot = true
-	timer.timeout.connect(func(): sprite.material.set("shader_parameter/active", false))
-	timer.start(0.1)
+	hit_flash_timer.start(hit_flash_time)
+	
+func hit_stun() -> void:
+	is_hit_stun = true
+	hit_stun_timer.start(hit_stun_time)
 
 func on_area_entered(area: Area2D) -> void:
 	if area.get_parent() is Player:
@@ -82,3 +100,10 @@ func on_area_exited(area: Area2D) -> void:
 
 func on_damage_tick() -> void:
 	player.take_damage(contact_damage)
+	
+func on_hit_stun_finished() -> void: 
+	is_hit_stun = false
+
+func on_hit_flash_finished() -> void:
+	sprite.material.set("shader_parameter/active", false)
+	
