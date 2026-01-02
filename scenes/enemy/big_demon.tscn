@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://dqx0v8pfqoius"]
+
+[ext_resource type="Script" uid="uid://cwr5qww1sayrk" path="res://scripts/enemy/big_demon.gd" id="1_xn5fc"]
+[ext_resource type="Material" uid="uid://ch5t2j6yu7064" path="res://assets/hit_flash.tres" id="2_kquk8"]
+[ext_resource type="SpriteFrames" uid="uid://cqv0am6ghbe1a" path="res://assets/enemy/big_demon/big_demon_sprite.tres" id="2_xn5fc"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vt4oo"]
+height = 32.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vt4oo"]
+size = Vector2(22, 28)
+
+[node name="BigDemon" type="CharacterBody2D"]
+script = ExtResource("1_xn5fc")
+contact_damage = 10
+contact_tick_rate_s = 0.2
+move_speed = 15.0
+aggro_range = 100.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_vt4oo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = ExtResource("2_kquk8")
+sprite_frames = ExtResource("2_xn5fc")
+animation = &"run"
+metadata/_edit_lock_ = true
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-1, 2)
+shape = SubResource("RectangleShape2D_vt4oo")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]

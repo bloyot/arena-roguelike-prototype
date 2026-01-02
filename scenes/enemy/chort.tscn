@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://duthgcyg0n6ry"]
+
+[ext_resource type="Script" uid="uid://d0ojepyintvg7" path="res://scripts/enemy/chort.gd" id="1_t1osx"]
+[ext_resource type="SpriteFrames" uid="uid://bsxw8xyj34lbb" path="res://assets/enemy/chort/chort_sprite.tres" id="1_vt4oo"]
+[ext_resource type="Material" uid="uid://ch5t2j6yu7064" path="res://assets/hit_flash.tres" id="2_wqtgy"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vt4oo"]
+radius = 6.0
+height = 24.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vt4oo"]
+size = Vector2(11, 21)
+
+[node name="Chort" type="CharacterBody2D"]
+script = ExtResource("1_t1osx")
+contact_damage = 5
+contact_tick_rate_s = 0.2
+move_speed = 45.0
+aggro_range = 100.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_vt4oo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = ExtResource("2_wqtgy")
+sprite_frames = ExtResource("1_vt4oo")
+animation = &"run"
+frame_progress = 0.59089625
+metadata/_edit_lock_ = true
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_vt4oo")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]

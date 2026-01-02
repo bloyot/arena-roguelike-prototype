@@ -1,0 +1,47 @@
+[gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://bsxw8xyj34lbb"]
+
+[ext_resource type="Texture2D" uid="uid://clgjul4kh77v5" path="res://assets/enemy/chort/idle/chort_idle_anim_f0.png" id="1_h6h8u"]
+[ext_resource type="Texture2D" uid="uid://736g3k1walbi" path="res://assets/enemy/chort/idle/chort_idle_anim_f1.png" id="2_ir7pq"]
+[ext_resource type="Texture2D" uid="uid://bdg4dedjpkdqm" path="res://assets/enemy/chort/idle/chort_idle_anim_f2.png" id="3_5i5pr"]
+[ext_resource type="Texture2D" uid="uid://c4de0wdx4jdfv" path="res://assets/enemy/chort/idle/chort_idle_anim_f3.png" id="4_jcodp"]
+[ext_resource type="Texture2D" uid="uid://chp0ar0h4fjea" path="res://assets/enemy/chort/run/chort_run_anim_f0.png" id="5_hoj7k"]
+[ext_resource type="Texture2D" uid="uid://cjhfjtcmlayw8" path="res://assets/enemy/chort/run/chort_run_anim_f1.png" id="6_msby2"]
+[ext_resource type="Texture2D" uid="uid://bvluex5kj6i2h" path="res://assets/enemy/chort/run/chort_run_anim_f2.png" id="7_rn2pu"]
+[ext_resource type="Texture2D" uid="uid://brf0lg662odwf" path="res://assets/enemy/chort/run/chort_run_anim_f3.png" id="8_l44q5"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_h6h8u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ir7pq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5i5pr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_jcodp")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_hoj7k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_msby2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_rn2pu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_l44q5")
+}],
+"loop": true,
+"name": &"run",
+"speed": 6.0
+}]

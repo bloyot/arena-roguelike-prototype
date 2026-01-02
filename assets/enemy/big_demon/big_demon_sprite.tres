@@ -1,0 +1,47 @@
+[gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://cqv0am6ghbe1a"]
+
+[ext_resource type="Texture2D" uid="uid://cmmc1gydgnw38" path="res://assets/enemy/big_demon/idle/big_demon_idle_anim_f0.png" id="1_0xxfc"]
+[ext_resource type="Texture2D" uid="uid://clcaw8v1kcfva" path="res://assets/enemy/big_demon/idle/big_demon_idle_anim_f1.png" id="2_28ar5"]
+[ext_resource type="Texture2D" uid="uid://dcbanklonlds8" path="res://assets/enemy/big_demon/idle/big_demon_idle_anim_f2.png" id="3_njdvp"]
+[ext_resource type="Texture2D" uid="uid://cv05vfs1mb18s" path="res://assets/enemy/big_demon/idle/big_demon_idle_anim_f3.png" id="4_jyftd"]
+[ext_resource type="Texture2D" uid="uid://dd26gq1yjk34y" path="res://assets/enemy/big_demon/run/big_demon_run_anim_f0.png" id="5_gskg4"]
+[ext_resource type="Texture2D" uid="uid://b3gsm2xei45w2" path="res://assets/enemy/big_demon/run/big_demon_run_anim_f1.png" id="6_k4nbb"]
+[ext_resource type="Texture2D" uid="uid://cpijxkwbdgmrg" path="res://assets/enemy/big_demon/run/big_demon_run_anim_f2.png" id="7_lfmgx"]
+[ext_resource type="Texture2D" uid="uid://clleih133p12p" path="res://assets/enemy/big_demon/run/big_demon_run_anim_f3.png" id="8_02kdk"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_0xxfc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_28ar5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_njdvp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_jyftd")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_gskg4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_k4nbb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_lfmgx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_02kdk")
+}],
+"loop": true,
+"name": &"run",
+"speed": 6.0
+}]
