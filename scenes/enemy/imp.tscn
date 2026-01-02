@@ -2,7 +2,7 @@
 
 [ext_resource type="Material" uid="uid://ch5t2j6yu7064" path="res://assets/hit_flash.tres" id="1_25qt8"]
 [ext_resource type="SpriteFrames" uid="uid://dvlv5fitw46c" path="res://assets/enemy/imp/imp_sprite.tres" id="1_arkg0"]
-[ext_resource type="Script" uid="uid://bi0jjjg8pko20" path="res://scripts/enemy/imp.gd" id="1_ryekx"]
+[ext_resource type="Script" uid="uid://c4u4j54nav30j" path="res://scripts/enemy/imp.gd" id="1_ryekx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ryekx"]
 radius = 5.5
@@ -32,7 +32,6 @@ material = ExtResource("1_25qt8")
 sprite_frames = ExtResource("1_arkg0")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.40733263
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 4

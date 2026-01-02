@@ -53,11 +53,13 @@ func _physics_process(_delta: float) -> void:
 
 	if !aggrod and player.global_position.distance_to(global_position) < aggro_range:
 		aggrod = true
+		sprite.play("run")
 
 	if aggrod:
 		navigation_agent.target_position = player.global_position
 		var next_position: Vector2 = navigation_agent.get_next_path_position()
 		velocity = (next_position - global_position).normalized() * move_speed
+		set_facing()
 
 	if !is_hit_stun:
 		move_and_slide()	
@@ -81,6 +83,9 @@ func spawn_damage_text(damage: int) -> void:
 	damage_text.position.y -= 10
 	damage_text.scale = Vector2(.5, .5)
 	damage_text._initialize(DamageText.TEXT_TYPE.DAMAGE, str(damage))
+
+func set_facing() -> void:
+	sprite.flip_h = true if player.position.x < position.x else false
 
 func hit_flash() -> void:
 	sprite.material.set("shader_parameter/active", true)

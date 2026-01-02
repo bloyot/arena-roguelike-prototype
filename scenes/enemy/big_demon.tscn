@@ -16,6 +16,8 @@ contact_damage = 10
 contact_tick_rate_s = 0.2
 move_speed = 15.0
 aggro_range = 100.0
+hit_stun_time = 0.3
+hit_flash_time = 0.1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
@@ -24,7 +26,8 @@ shape = SubResource("CapsuleShape2D_vt4oo")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = ExtResource("2_kquk8")
 sprite_frames = ExtResource("2_xn5fc")
-animation = &"run"
+animation = &"idle"
+autoplay = "idle"
 metadata/_edit_lock_ = true
 
 [node name="Hitbox" type="Area2D" parent="."]
