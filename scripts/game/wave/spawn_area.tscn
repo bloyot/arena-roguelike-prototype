@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cn2mln72m14l1"]
+
+[ext_resource type="Script" uid="uid://dgjk2f5e4s1d6" path="res://scripts/game/wave/spawn_area.gd" id="1_d5wpg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4skod"]
+radius = 30.0
+
+[node name="SpawnArea" type="Node2D"]
+script = ExtResource("1_d5wpg")
+radius = 30.0
+
+[node name="Area2D" type="Area2D" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_4skod")
+disabled = true

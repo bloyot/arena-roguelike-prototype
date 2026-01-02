@@ -1,10 +1,24 @@
-[gd_scene load_steps=6 format=4 uid="uid://c0h5npv7vsge6"]
+[gd_scene load_steps=10 format=4 uid="uid://c0h5npv7vsge6"]
 
 [ext_resource type="TileSet" uid="uid://bk5s8shuuu403" path="res://assets/tiles.tres" id="1_errlg"]
 [ext_resource type="PackedScene" uid="uid://cxmr885n24ccj" path="res://scenes/player/player.tscn" id="2_bl13t"]
 [ext_resource type="PackedScene" uid="uid://vh57x8en1fcj" path="res://scenes/enemy/imp.tscn" id="3_iyx0m"]
 [ext_resource type="PackedScene" uid="uid://dqx0v8pfqoius" path="res://scenes/enemy/big_demon.tscn" id="4_j5jx5"]
 [ext_resource type="PackedScene" uid="uid://duthgcyg0n6ry" path="res://scenes/enemy/chort.tscn" id="5_lpvoh"]
+[ext_resource type="Script" uid="uid://dmmtl0hda5obe" path="res://scripts/game/wave/wave_manager.gd" id="6_lpvoh"]
+[ext_resource type="Script" uid="uid://undmhay5dy6w" path="res://scripts/game/wave/wave.gd" id="7_at5dv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_at5dv"]
+radius = 25.0
+
+[sub_resource type="Resource" id="Resource_jcd4p"]
+script = ExtResource("7_at5dv")
+enemies = Dictionary[PackedScene, int]({
+ExtResource("3_iyx0m"): 3,
+ExtResource("5_lpvoh"): 2,
+ExtResource("4_j5jx5"): 1
+})
+metadata/_custom_type_script = "uid://undmhay5dy6w"
 
 [node name="Test" type="Node2D"]
 
@@ -53,3 +67,28 @@ player = NodePath("../../Player")
 [node name="Chort2" parent="Objects/Enemies" node_paths=PackedStringArray("player") instance=ExtResource("5_lpvoh")]
 position = Vector2(328, 200)
 player = NodePath("../../Player")
+
+[node name="SpawnPoints" type="Node2D" parent="Objects"]
+
+[node name="Marker2D" type="Marker2D" parent="Objects/SpawnPoints"]
+position = Vector2(107, 48)
+
+[node name="Marker2D2" type="Marker2D" parent="Objects/SpawnPoints"]
+position = Vector2(325, 72)
+
+[node name="Marker2D3" type="Marker2D" parent="Objects/SpawnPoints"]
+position = Vector2(299, 174)
+
+[node name="Area2D" type="Area2D" parent="Objects/SpawnPoints"]
+position = Vector2(-14, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/SpawnPoints/Area2D"]
+position = Vector2(351, 64)
+shape = SubResource("CircleShape2D_at5dv")
+
+[node name="Game" type="Node2D" parent="."]
+
+[node name="WaveManager" type="Node2D" parent="Game" node_paths=PackedStringArray("spawn_points")]
+script = ExtResource("6_lpvoh")
+spawn_points = [NodePath("../../Objects/SpawnPoints/Marker2D"), NodePath("../../Objects/SpawnPoints/Marker2D2"), NodePath("../../Objects/SpawnPoints/Marker2D3")]
+waves = Array[ExtResource("7_at5dv")]([SubResource("Resource_jcd4p")])
