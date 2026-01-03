@@ -26,8 +26,6 @@ var aggrod: bool = false
 var is_hit_stun: bool = false
 
 func _ready() -> void:
-	player = Helpers.get_player()
-
 	sprite.frame = randi_range(0, sprite.sprite_frames.get_frame_count("idle") - 1)
 	hitbox.area_entered.connect(on_area_entered)
 	hitbox.area_exited.connect(on_area_exited)
@@ -45,6 +43,10 @@ func _ready() -> void:
 	hit_flash_timer.one_shot = true
 	hit_flash_timer.timeout.connect(on_hit_flash_finished)
 	add_child(hit_flash_timer)
+
+func construct(player_: Player, enemy_id_: int) -> void:
+	player = player_
+	enemy_id = enemy_id_
 
 func _physics_process(_delta: float) -> void:
 

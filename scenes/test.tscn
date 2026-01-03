@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://c0h5npv7vsge6"]
+[gd_scene load_steps=11 format=4 uid="uid://c0h5npv7vsge6"]
 
 [ext_resource type="TileSet" uid="uid://bk5s8shuuu403" path="res://assets/tiles.tres" id="1_errlg"]
 [ext_resource type="PackedScene" uid="uid://cxmr885n24ccj" path="res://scenes/player/player.tscn" id="2_bl13t"]
@@ -15,6 +15,15 @@ enemies = Dictionary[PackedScene, int]({
 ExtResource("3_iyx0m"): 3,
 ExtResource("5_lpvoh"): 2,
 ExtResource("4_j5jx5"): 1
+})
+metadata/_custom_type_script = "uid://undmhay5dy6w"
+
+[sub_resource type="Resource" id="Resource_uacia"]
+script = ExtResource("7_at5dv")
+enemies = Dictionary[PackedScene, int]({
+ExtResource("3_iyx0m"): 10,
+ExtResource("5_lpvoh"): 5,
+ExtResource("4_j5jx5"): 2
 })
 metadata/_custom_type_script = "uid://undmhay5dy6w"
 
@@ -58,8 +67,9 @@ radius = 40.0
 
 [node name="Game" type="Node2D" parent="."]
 
-[node name="WaveManager" type="Node2D" parent="Game" node_paths=PackedStringArray("spawn_points", "enemies_node")]
+[node name="WaveManager" type="Node2D" parent="Game" node_paths=PackedStringArray("player", "enemies_node", "spawn_points")]
 script = ExtResource("6_lpvoh")
-spawn_points = [NodePath("../../Objects/SpawnPoints/SpawnArea"), NodePath("../../Objects/SpawnPoints/SpawnArea2"), NodePath("../../Objects/SpawnPoints/SpawnArea3")]
-waves = Array[ExtResource("7_at5dv")]([SubResource("Resource_jcd4p")])
+player = NodePath("../../Objects/Player")
 enemies_node = NodePath("../../Objects/Enemies")
+spawn_points = [NodePath("../../Objects/SpawnPoints/SpawnArea"), NodePath("../../Objects/SpawnPoints/SpawnArea2"), NodePath("../../Objects/SpawnPoints/SpawnArea3")]
+waves = Array[ExtResource("7_at5dv")]([SubResource("Resource_jcd4p"), SubResource("Resource_uacia")])
