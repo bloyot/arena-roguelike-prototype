@@ -1,12 +1,6 @@
 @abstract
 class_name Enemy extends CharacterBody2D
 
-signal damage_taken(enemy_id, damage)
-signal enemy_killed(enemy_id)
-
-# TODO make this dynamically configured, probably loadable from a top level combat
-# manager autoload or something
-@export var player: Player
 # all enemies should deal damage to the player when coming into contact, this returns the amount of damage to deal
 @export var contact_damage: int
 @export var contact_tick_rate_s: float
@@ -20,6 +14,7 @@ signal enemy_killed(enemy_id)
 @onready var hitbox: Area2D = $Hitbox
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 
+var player: Player
 var damage_text_scene = preload("res://scenes/enemy/damage_text.tscn")
 var damage_tick_timer: Timer
 var hit_stun_timer: Timer
@@ -31,6 +26,8 @@ var aggrod: bool = false
 var is_hit_stun: bool = false
 
 func _ready() -> void:
+	player = Helpers.get_player()
+
 	sprite.frame = randi_range(0, sprite.sprite_frames.get_frame_count("idle") - 1)
 	hitbox.area_entered.connect(on_area_entered)
 	hitbox.area_exited.connect(on_area_exited)
@@ -66,7 +63,7 @@ func _physics_process(_delta: float) -> void:
 
 func take_damage(damage: int) -> void:
 	health -= damage
-	damage_taken.emit(enemy_id, damage)
+	EventManager.damage_taken.emit(enemy_id, damage)
 	hit_flash()
 	spawn_damage_text(damage)
 	hit_stun()
@@ -74,7 +71,7 @@ func take_damage(damage: int) -> void:
 		die()
 
 func die() -> void:
-	enemy_killed.emit(enemy_id)
+	EventManager.enemy_killed.emit(enemy_id)
 	queue_free()
 
 func spawn_damage_text(damage: int) -> void:

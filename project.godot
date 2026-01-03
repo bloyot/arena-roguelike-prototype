@@ -18,6 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 InputManager="*res://scripts/autoloads/input_manager.gd"
+EventManager="*res://scripts/autoloads/event_manager.gd"
+Helpers="*res://scripts/autoloads/helpers.gd"
 
 [display]
 
