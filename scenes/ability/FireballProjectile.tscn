@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddcxnqgh2iytw"]
+
+[ext_resource type="Script" uid="uid://bttk30b4rxs8q" path="res://scripts/ability/projectile.gd" id="1_5daug"]
+[ext_resource type="SpriteFrames" uid="uid://cfmjld57kwmsa" path="res://assets/fx/fireball_fx.tres" id="1_xlr8m"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3ltcq"]
+radius = 4.0
+height = 18.0
+
+[node name="FireballProjectile" type="Node2D"]
+script = ExtResource("1_5daug")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_xlr8m")
+autoplay = "default"
+frame_progress = 0.8087802
+
+[node name="Hitbox" type="Area2D" parent="AnimatedSprite2D"]
+unique_name_in_owner = true
+collision_layer = 8
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Hitbox"]
+position = Vector2(10, 0)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_3ltcq")
