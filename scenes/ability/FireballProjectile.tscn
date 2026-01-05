@@ -8,6 +8,7 @@ radius = 4.0
 height = 18.0
 
 [node name="FireballProjectile" type="Node2D"]
+scale = Vector2(0.6, 0.6)
 script = ExtResource("1_5daug")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -18,7 +19,7 @@ frame_progress = 0.8087802
 [node name="Hitbox" type="Area2D" parent="AnimatedSprite2D"]
 unique_name_in_owner = true
 collision_layer = 8
-collision_mask = 9
+collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Hitbox"]
 position = Vector2(10, 0)

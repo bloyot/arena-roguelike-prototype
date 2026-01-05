@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://spxnuqnbfunx"]
+[gd_scene load_steps=3 format=3 uid="uid://spxnuqnbfunx"]
 
 [ext_resource type="Script" uid="uid://btxuq5i11q4ch" path="res://scripts/ability/fireball_ability.gd" id="1_3ltcq"]
+[ext_resource type="PackedScene" uid="uid://ddcxnqgh2iytw" path="res://scenes/ability/FireballProjectile.tscn" id="2_pteas"]
 
 [node name="FireballAbility" type="Node2D" groups=["ability"]]
 script = ExtResource("1_3ltcq")
+fireball_projectile = ExtResource("2_pteas")
+projectile_speed = 1.0
+damage = 5

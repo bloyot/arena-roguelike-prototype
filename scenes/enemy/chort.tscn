@@ -12,6 +12,8 @@ height = 24.0
 size = Vector2(11, 21)
 
 [node name="Chort" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 19
 script = ExtResource("1_t1osx")
 contact_damage = 5
 contact_tick_rate_s = 0.2
