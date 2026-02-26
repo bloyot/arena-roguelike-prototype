@@ -15,18 +15,27 @@ static var INTANGIBLE_COLLISION_MASK: int = 0b0001
 @onready var ability_system: AbilitySystem = %AbilitySystem
 # Exports
 @export var move_speed: float
+@export var dash_speed: float
+@export var dash_duration: float
 
 # State variables
 # track all states here for reference, map of STATE enum to BaseCharacterState object
 var states: Dictionary = {
 	BaseCharacterState.STATE.IDLE: IdleState.new(),
-	BaseCharacterState.STATE.MOVE: MoveState.new()
+	BaseCharacterState.STATE.MOVE: MoveState.new(),
+	BaseCharacterState.STATE.DASH: DashState.new()
 }
+
+var input_locked: bool = false
+var intangible: bool = false
+
 # track our current state here
 var curr_state: BaseCharacterState = null
 # use this to avoid flipping our facing during the middle of an attack or other animation
 var freeze_facing: bool = false
-
+# track the ability indexes here
+var active_ability_index: int = 0
+var movement_ability_index: int = 2
 ## player specific stuff goes here ##
 var health = 50
 
@@ -50,28 +59,34 @@ func _physics_process(delta: float) -> void:
 
 func move(_delta: float) -> void:
 
-	velocity = Vector2(0, 0)
-	if InputManager.get_input()["move_left"]:
-		velocity += Vector2(-move_speed, 0)
-	if InputManager.get_input()["move_right"]:
-		velocity += Vector2(move_speed, 0)
-	if InputManager.get_input()["move_up"]:
-		velocity += Vector2(0, -move_speed)
-	if InputManager.get_input()["move_down"]:
-		velocity += Vector2(0, move_speed)
+	if not input_locked:
+		velocity = Vector2(0, 0)
+		if InputManager.get_input()["move_left"]:
+			velocity += Vector2(-move_speed, 0)
+		if InputManager.get_input()["move_right"]:
+			velocity += Vector2(move_speed, 0)
+		if InputManager.get_input()["move_up"]:
+			velocity += Vector2(0, -move_speed)
+		if InputManager.get_input()["move_down"]:
+			velocity += Vector2(0, move_speed)
 
 	move_and_slide()
 
 func handle_abilities() -> void:
-	if InputManager.get_input()["ability_1"]:
-		ability_system.use_ability(0, camera.get_global_mouse_position())
-	if InputManager.get_input()["ability_2"]:
-		ability_system.use_ability(1, camera.get_global_mouse_position())
-	if InputManager.get_input()["ability_3"]:
-		ability_system.use_ability(2, camera.get_global_mouse_position())
-	if InputManager.get_input()["ability_4"]:
-		ability_system.use_ability(3, camera.get_global_mouse_position())
 
+	if not input_locked:
+		if InputManager.get_input()["ability_1"]:
+			active_ability_index = 0
+		if InputManager.get_input()["ability_2"]:
+			active_ability_index = 1
+		#if InputManager.get_input()["ability_3"]:
+		#	active_ability_index = 2
+		#if InputManager.get_input()["ability_4"]:
+		#	active_ability_index = 3
+		if InputManager.get_input()["use_primary_ability"]:
+			ability_system.use_ability(active_ability_index, camera.get_global_mouse_position())
+		if InputManager.get_input()["use_movement_ability"]:
+			ability_system.use_ability(movement_ability_index, camera.get_global_mouse_position())
 
 func init_states() -> void:
 	# setup the states

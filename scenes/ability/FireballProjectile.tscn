@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ddcxnqgh2iytw"]
+[gd_scene load_steps=5 format=3 uid="uid://ddcxnqgh2iytw"]
 
-[ext_resource type="Script" uid="uid://bttk30b4rxs8q" path="res://scripts/ability/projectile.gd" id="1_5daug"]
+[ext_resource type="Script" uid="uid://d1341idv1suee" path="res://scripts/ability/fireball_projectile.gd" id="1_5daug"]
 [ext_resource type="SpriteFrames" uid="uid://cfmjld57kwmsa" path="res://assets/fx/fireball_fx.tres" id="1_xlr8m"]
+[ext_resource type="PackedScene" uid="uid://cheol8ouxjq38" path="res://scenes/fx/aoe_indicator.tscn" id="2_752hn"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3ltcq"]
 radius = 4.0
@@ -10,6 +11,10 @@ height = 18.0
 [node name="FireballProjectile" type="Node2D"]
 scale = Vector2(0.6, 0.6)
 script = ExtResource("1_5daug")
+aoe_indicator = ExtResource("2_752hn")
+splash_damage = 2
+splash_radius = 10.0
+time_to_live = 0.1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("1_xlr8m")
@@ -25,3 +30,7 @@ collision_mask = 5
 position = Vector2(10, 0)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_3ltcq")
+
+[node name="Tip" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(18, 0)

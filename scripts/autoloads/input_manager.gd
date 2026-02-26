@@ -22,6 +22,8 @@ func input() -> Dictionary:
 		"ability_2": Input.is_action_just_pressed("ability_2"),
 		"ability_3": Input.is_action_just_pressed("ability_3"),
 		"ability_4": Input.is_action_just_pressed("ability_4"),
+		"use_primary_ability": Input.is_action_just_pressed("use_primary_ability"),
+		"use_movement_ability": Input.is_action_just_pressed("use_movement_ability"),
 		"quit": Input.is_action_just_pressed("quit")
 	}
 

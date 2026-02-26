@@ -3,7 +3,8 @@ class_name BaseCharacterState
 enum STATE {
 	NONE,
 	IDLE,
-	MOVE
+	MOVE,
+	DASH
 }
 
 var player: Player

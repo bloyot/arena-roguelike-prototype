@@ -3,12 +3,20 @@ class_name FireballAbility extends Ability
 @export var fireball_projectile: PackedScene
 @export var projectile_speed: float
 @export var damage: int
+@export var cooldown_s: float
+@export var cost: int
+
+var ability_id: int
 
 var projectiles_node: Node2D
 
 func _ready() -> void:
+	super()
 	# TODO need a better way to reference this object
 	projectiles_node = get_tree().get_root().get_node("/root/Test/Objects/Projectiles") as Node2D
+
+func get_ability_id() -> int:
+	return ability_id
 
 func can_activate_ability() -> bool:
 	return true
@@ -21,6 +29,12 @@ func cancel_ability() -> void:
 
 func get_ability_name() -> String:
 	return "Fireball"
+
+func get_cooldown_s() -> float:
+	return cooldown_s
+
+func get_cost() -> int:
+	return cost
 
 func spawn_fireball() -> void:
 	var fireball: Projectile = fireball_projectile.instantiate() as Projectile

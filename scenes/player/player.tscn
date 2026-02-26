@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cxmr885n24ccj"]
+[gd_scene load_steps=8 format=3 uid="uid://cxmr885n24ccj"]
 
 [ext_resource type="SpriteFrames" uid="uid://tfxm0g443rlu" path="res://assets/character/wizard/wizard_sprites.tres" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://d15au6qjch55y" path="res://scripts/player.gd" id="1_dovo2"]
 [ext_resource type="PackedScene" uid="uid://cbnvpfqvuiyeo" path="res://scenes/ability/SlashAbility.tscn" id="3_gmlin"]
 [ext_resource type="Script" uid="uid://b7fbvjtv7pwhe" path="res://scripts/ability/ability_system.gd" id="3_lvxji"]
 [ext_resource type="PackedScene" uid="uid://spxnuqnbfunx" path="res://scenes/ability/FireballAbility.tscn" id="5_75vfm"]
+[ext_resource type="Script" uid="uid://biawhslrrwrco" path="res://scripts/ability/dash_ability.gd" id="6_75vfm"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dovo2"]
 radius = 6.0
@@ -15,6 +16,8 @@ collision_layer = 2
 collision_mask = 21
 script = ExtResource("1_dovo2")
 move_speed = 100.0
+dash_speed = 300.0
+dash_duration = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -2)
@@ -44,10 +47,15 @@ script = ExtResource("3_lvxji")
 [node name="Pivot" type="Node2D" parent="AbilitySystem"]
 unique_name_in_owner = true
 
+[node name="FireballAbility" parent="AbilitySystem/Pivot" node_paths=PackedStringArray("player") instance=ExtResource("5_75vfm")]
+player = NodePath("../../..")
+
 [node name="SlashAbility" parent="AbilitySystem/Pivot" node_paths=PackedStringArray("player") instance=ExtResource("3_gmlin")]
 unique_name_in_owner = true
 position = Vector2(20, 0)
 player = NodePath("../../..")
 
-[node name="FireballAbility" parent="AbilitySystem/Pivot" node_paths=PackedStringArray("player") instance=ExtResource("5_75vfm")]
+[node name="DashAbility" type="Node2D" parent="AbilitySystem/Pivot" node_paths=PackedStringArray("player") groups=["ability"]]
+script = ExtResource("6_75vfm")
 player = NodePath("../../..")
+metadata/_custom_type_script = "uid://biawhslrrwrco"

@@ -11,7 +11,12 @@ func _ready() -> void:
 
 # position is the initial position for the projectile
 # direction should be a normalized vector pointing where the object should move
-func construct(position_: Vector2, rotation_: float, velocity_: float, direction_: Vector2, damage_: int) -> void:
+func construct(
+		position_: Vector2,
+		rotation_: float,
+		velocity_: float,
+		direction_: Vector2,
+		damage_: int) -> void:
 	position = position_
 	velocity = velocity_
 	direction = direction_
@@ -25,5 +30,4 @@ func on_body_entered(body_entered: Node2D) -> void:
 	if body_entered is Enemy:
 		body_entered.take_damage(damage)
 
-	# TODO spawn AoE indicator scene
 	queue_free()

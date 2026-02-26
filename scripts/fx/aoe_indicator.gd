@@ -1,6 +1,9 @@
 @tool
 class_name AoEIndicator extends Node2D
 
+@onready var area: Area2D = %Area2D
+@onready var collision: CollisionShape2D = %CollisionShape2D
+
 @export var border_color: Color
 @export var fill_color: Color
 @export var min_radius: float
@@ -10,11 +13,15 @@ class_name AoEIndicator extends Node2D
 @export var filled: bool = false
 @export var width: float = 1.0
 
+var on_body_entered_func = func(_body: Node2D): print("override me")
 var curr_radius: float
 var ttl_timer: Timer
 
 func _ready() -> void:
 	curr_radius = min_radius
+	var circleShape: CircleShape2D = collision.shape as CircleShape2D
+	circleShape.radius = curr_radius
+	area.body_entered.connect(on_body_entered_func)
 
 	# create the timer to remove the aoe after the ttl
 	ttl_timer = Timer.new()
@@ -27,6 +34,7 @@ func _ready() -> void:
 	if max_radius > min_radius:
 		var tween = get_tree().create_tween()
 		tween.tween_property(self, "curr_radius", max_radius, growth_time)
+		tween.parallel().tween_property(circleShape, "radius", max_radius, growth_time)
 		tween.tween_callback(func(): ttl_timer.start(time_to_live))
 	else:
 		ttl_timer.start(time_to_live)

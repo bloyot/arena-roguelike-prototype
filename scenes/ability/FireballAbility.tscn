@@ -6,5 +6,6 @@
 [node name="FireballAbility" type="Node2D" groups=["ability"]]
 script = ExtResource("1_3ltcq")
 fireball_projectile = ExtResource("2_pteas")
-projectile_speed = 1.0
+projectile_speed = 3.0
 damage = 5
+cooldown_s = 0.15

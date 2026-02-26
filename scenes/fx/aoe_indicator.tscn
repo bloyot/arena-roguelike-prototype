@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://cheol8ouxjq38"]
+[gd_scene load_steps=3 format=3 uid="uid://cheol8ouxjq38"]
 
 [ext_resource type="Script" uid="uid://cdeg6cegbm0s1" path="res://scripts/fx/aoe_indicator.gd" id="1_tgymb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tgymb"]
+radius = 50.0
 
 [node name="AoEIndicator" type="Node2D"]
 script = ExtResource("1_tgymb")
@@ -11,3 +14,12 @@ max_radius = 50.0
 time_to_live = 3.0
 growth_time = 2.0
 filled = true
+
+[node name="Area2D" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_tgymb")

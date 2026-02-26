@@ -4,13 +4,19 @@ extends Ability
 @onready var animated_sprite: AnimatedSprite2D = $SlashFx
 @onready var hitbox: Area2D = %Hitbox
 
+var ability_id: int
+
 # TODO make this configurable
 var damage: int = 4
 
 func _ready() -> void:
+	super()
 	toggle_fx(false)
 	animated_sprite.animation_finished.connect(on_animation_finished)
 	hitbox.area_entered.connect(on_area_entered)
+
+func get_ability_id() -> int:
+	return ability_id
 
 func can_activate_ability() -> bool:
 	return true
@@ -24,6 +30,12 @@ func cancel_ability() -> void:
 
 func get_ability_name() -> String:
 	return "Slash"
+
+func get_cooldown_s() -> float:
+	return 0.0
+
+func get_cost() -> int:
+	return 0
 
 func end_ability() -> void:
 	super()
