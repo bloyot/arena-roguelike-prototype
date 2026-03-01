@@ -9,11 +9,13 @@ class_name FireballAbility extends Ability
 var ability_id: int
 
 var projectiles_node: Node2D
+var audio_manager: CombatAudioManager
 
 func _ready() -> void:
 	super()
 	# TODO need a better way to reference this object
 	projectiles_node = get_tree().get_root().get_node("/root/Test/Objects/Projectiles") as Node2D
+	audio_manager = Helpers.get_audio_manager() as CombatAudioManager
 
 func get_ability_id() -> int:
 	return ability_id
@@ -23,6 +25,7 @@ func can_activate_ability() -> bool:
 
 func activate_ability() -> void:
 	spawn_fireball()
+	audio_manager.play_fx(CombatAudioManager.FX_NAME.FIREBALL)
 
 func cancel_ability() -> void:
 	pass

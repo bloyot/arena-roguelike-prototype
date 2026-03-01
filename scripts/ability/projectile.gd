@@ -2,12 +2,15 @@ class_name Projectile extends Node2D
 
 @onready var area: Area2D = %Hitbox
 
+var audio_manager: CombatAudioManager
+
 var velocity: float
 var direction: Vector2
 var damage: int
 
 func _ready() -> void:
 	area.body_entered.connect(on_body_entered)
+	audio_manager = Helpers.get_audio_manager() as CombatAudioManager
 
 # position is the initial position for the projectile
 # direction should be a normalized vector pointing where the object should move

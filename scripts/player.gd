@@ -5,8 +5,8 @@ enum FACING { LEFT, RIGHT }
 # Signals
 signal state_change(old_state: BaseCharacterState, new_state: BaseCharacterState)
 
-static var DEFAULT_COLLISION_MASK: int = 0b0101
-static var INTANGIBLE_COLLISION_MASK: int = 0b0001
+static var INTANGIBLE_COLLISION_MASK: int = 0b10001
+static var INTANGIBLE_COLLISION_LAYER: int = 0b100000
 
 # Children
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -27,7 +27,9 @@ var states: Dictionary = {
 }
 
 var input_locked: bool = false
-var intangible: bool = false
+var default_collision_mask: int
+var default_hitbox_collision_mask: int
+var default_collision_layer: int
 
 # track our current state here
 var curr_state: BaseCharacterState = null
@@ -44,6 +46,9 @@ var health = 50
 ########################################
 func _ready() -> void:
 	init_states()
+	default_collision_mask = get_collision_mask()
+	default_hitbox_collision_mask = hitbox.get_collision_mask()
+	default_collision_layer = get_collision_layer()
 
 func _physics_process(delta: float) -> void:
 	var maybe_new_state: BaseCharacterState.STATE = curr_state.update(delta)
@@ -118,8 +123,11 @@ func play_animation(animation_name: String) -> void:
 	animated_sprite.play(animation_name)
 
 func set_intangible(is_intangible: bool) -> void:
-	collision_mask = INTANGIBLE_COLLISION_MASK if is_intangible else DEFAULT_COLLISION_MASK
-	hitbox.collision_mask = INTANGIBLE_COLLISION_MASK if is_intangible else DEFAULT_COLLISION_MASK
+	collision_mask = INTANGIBLE_COLLISION_MASK if is_intangible else default_collision_mask
+	collision_layer = INTANGIBLE_COLLISION_LAYER if is_intangible else default_collision_layer
+
+	hitbox.collision_mask = INTANGIBLE_COLLISION_MASK if is_intangible else default_hitbox_collision_mask
+	hitbox.collision_layer = INTANGIBLE_COLLISION_LAYER if is_intangible else default_collision_layer
 
 func determine_facing() -> Player.FACING:
 	return Player.FACING.RIGHT if camera.get_global_mouse_position().x > position.x else Player.FACING.LEFT

@@ -17,3 +17,8 @@ func get_projectiles() -> Node2D:
 	# TODO update this to the name of our actual combat scene
 	assert(get_tree().get_current_scene().name == "Test", "get_objects called outside of combat scene")
 	return get_tree().get_root().get_node("/root/Test/Objects/Projectiles") as Node2D
+
+func get_audio_manager() -> CombatAudioManager:
+	# TODO update this to the name of our actual combat scene
+	assert(get_tree().get_current_scene().name == "Test", "get_objects called outside of combat scene")
+	return get_tree().get_root().get_node("/root/Test/CombatAudioManager") as CombatAudioManager

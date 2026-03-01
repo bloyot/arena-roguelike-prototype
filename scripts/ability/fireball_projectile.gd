@@ -7,7 +7,6 @@ class_name FireballProjectile extends Projectile
 @export var splash_radius: float
 @export var time_to_live: float
 
-
 func on_body_entered(body_entered: Node2D) -> void:
 	if body_entered is Enemy:
 		body_entered.take_damage(damage)
@@ -24,5 +23,7 @@ func on_body_entered(body_entered: Node2D) -> void:
 	#aoe.on_body_entered_func = func(body: Node2D): print(body)
 
 	Helpers.get_projectiles().call_deferred("add_child", aoe)
+
+	audio_manager.play_fx(CombatAudioManager.FX_NAME.FIREBALL_IMPACT)
 
 	call_deferred("queue_free")

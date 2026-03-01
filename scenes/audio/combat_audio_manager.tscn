@@ -1,0 +1,24 @@
+[gd_scene load_steps=7 format=3 uid="uid://qnd32h00ud0l"]
+
+[ext_resource type="AudioStream" uid="uid://bhwwwltcv6nxp" path="res://assets/audio/music/combat_background.mp3" id="1_5sftd"]
+[ext_resource type="Script" uid="uid://cd8lf1gw0mogl" path="res://scripts/audio/combat_audio_manager.gd" id="1_ckm00"]
+[ext_resource type="AudioStream" uid="uid://d1thfu1864asa" path="res://assets/audio/sfx/fireball.mp3" id="2_hhrlt"]
+[ext_resource type="AudioStream" uid="uid://mluwd1sp8og8" path="res://assets/audio/sfx/footstep.mp3" id="3_hhrlt"]
+[ext_resource type="AudioStream" uid="uid://dmxmbwgvgdxgw" path="res://assets/audio/sfx/fireball_impact.mp3" id="3_qty14"]
+[ext_resource type="AudioStream" uid="uid://bla0vcwqunjf2" path="res://assets/audio/sfx/dash.wav" id="4_q0rde"]
+
+[node name="CombatAudioManager" type="Node2D"]
+script = ExtResource("1_ckm00")
+fireball = ExtResource("2_hhrlt")
+fireball_impact = ExtResource("3_qty14")
+footstep = ExtResource("3_hhrlt")
+dash = ExtResource("4_q0rde")
+
+[node name="MusicAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("1_5sftd")
+bus = &"Music"
+
+[node name="FxAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+bus = &"Fx"
